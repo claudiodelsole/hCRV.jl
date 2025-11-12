@@ -1,8 +1,8 @@
 # activate Julia project
 julia_command('using Pkg')
 julia_command('Pkg.activate(".")')
-julia_command('Pkg.resolve()')
-julia_command('Pkg.update()')
+# julia_command('Pkg.resolve()')
+# julia_command('Pkg.update()')
 julia_command('Pkg.instantiate()')
 
 # load packages

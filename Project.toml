@@ -1,6 +1,6 @@
 name = "hCRV"
 uuid = "2d1db8c4-538f-4dd1-8a05-5f5f15e60ae8"
-authors = ["claudiodelsole <claudiodelsi96@gmail.com>"]
+authors = ["claudiodelsole <claudio.delsole@unimib.it>", "mcatalano <mcatalano@luiss.it>"]
 version = "0.1.0"
 
 [deps]
