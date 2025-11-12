@@ -1,6 +1,6 @@
 # Hierarchical completely random vectors
 
-This repository contains the source code and scripts to replicate results in the working paper [*Hierarchical random measures without tables*](https://arxiv.org/abs/2505.02653) by Marta Catalano and Claudio Del Sole. The core source code is organized in the form of [Julia](https://julialang.org/) package; an interface to allow integration within the R environment is also provided.
+This repository contains the source code and scripts to replicate results in the working paper [*Hierarchical Random Measures without Tables*](https://arxiv.org/abs/2505.02653) by Marta Catalano and Claudio Del Sole. The core source code is organized in the form of [Julia](https://julialang.org/) package; an interface to allow integration within the R environment is also provided.
 
 The source code is available in the `/src` folder, and implements the MCMC and exact posterior sampling algorithms for the gamma-gamma hierarchical CRV model introduced in the paper (Section 5.3). An implementation of the CRF-based and collapsed Gibbs samplers for the hierarchical Dirichlet process is also available (Sections 5.3 and S3.7).
 
