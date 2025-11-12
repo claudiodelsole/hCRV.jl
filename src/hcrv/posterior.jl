@@ -4,10 +4,10 @@ export posterior_gamma_mcmc, posterior_gamma_exact
 """
     posterior_gamma_mcmc(X, alpha0, rate0, b, num_samples; kwargs...)
 
-Posterior sampling from the gamma-gamma hierarchical CRV, using MCMC algorithms
+Posterior sampling from the gamma-gamma hierarchical CRV, using MCMC algorithms.
 
 # Arguments:
-- `X`: vectors of observations for each population
+- `X`: observations for each population
 - `alpha0`: model parameter
 - `rate0`: model parameter (b0 / alpha)
 - `b`: model parameter (relevant only if norm = false)
@@ -17,15 +17,15 @@ Posterior sampling from the gamma-gamma hierarchical CRV, using MCMC algorithms
 - `burnin = 0`: burnin steps
 - `thin = 1`: thinning lag
 - `L = 0`: number of jumps from the continuous component (if L = 0, total mass)
-- `normalize = false`: returns normalized probability weights (true) or unnormalized jumps (false)
-- `logscale = true`: proposes MH steps using Gamma proposals (false) or logNormal proposals (true)
+- `normalize = false`: return normalized probability weights (true) or unnormalized jumps (false)
+- `logscale = true`: propose MH steps using Gamma proposals (false) or logNormal proposals (true)
 
 # Returns:
 - `jumps`: posterior samples from jumps at fixed locations
 - `jumpsc`: posterior samples from jumps at random locations
 - `counts`: number of observations for each population and distinct value
 - `Xstar`: distinct values
-- `dgn`: DiagnosticsMCMC object
+- `dgn`: [`DiagnosticsMCMC`](@ref) object
 """
 function posterior_gamma_mcmc(X::Vector{Vector{T}}, alpha0::Float64, rate0::Float64, b::Float64, num_samples::Int64;
         burnin::Int64 = 0, thin::Int64 = 1, L::Int64 = 0, normalize::Bool = false, logscale::Bool = true) where T
@@ -43,10 +43,10 @@ end # posterior_gamma_mcmc
 """
     posterior_gamma_exact(X, alpha0, rate0, b, num_samples; kwargs...)
 
-Posterior sampling from the gamma-gamma hierarchical CRV, using exact sampling algorithms
+Posterior sampling from the gamma-gamma hierarchical CRV, using exact sampling algorithms.
 
 # Arguments:
-- `X`: vectors of observations for each population
+- `X`: observations for each population
 - `alpha0`: model parameter
 - `rate0`: model parameter (b0 / alpha)
 - `b`: model parameter (relevant only if norm = false)
@@ -54,14 +54,14 @@ Posterior sampling from the gamma-gamma hierarchical CRV, using exact sampling a
 
 # Keyword Arguments:
 - `L = 0`: number of jumps from the continuous component (if L = 0, total mass)
-- `normalize = false`: returns normalized probability weights (true) or unnormalized jumps (false)
+- `normalize = false`: return normalized probability weights (true) or unnormalized jumps (false)
 
 # Returns:
 - `jumps`: posterior samples from jumps at fixed locations
 - `jumpsc`: posterior samples from jumps at random locations
 - `counts`: number of observations for each population and distinct value
 - `Xstar`: distinct values
-- `dgn`: DiagnosticsExact object
+- `dgn`: [`DiagnosticsExact`](@ref) object
 """
 function posterior_gamma_exact(X::Vector{Vector{T}}, alpha0::Float64, rate0::Float64, b::Float64, num_samples::Int64; 
         L::Int = 0, normalize::Bool = false) where T

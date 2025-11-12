@@ -39,7 +39,7 @@ for s in range(1, num_experiments)
     counts_group = fill(100, d)
 
     # sample observations
-    X = model_hdp(counts_group, rand(Gamma(5.0)), rand(Gamma(3.0)))
+    X = model_hdp(counts_group, rand(Gamma(3.0)), rand(Gamma(5.0)))
 
     # extract info from data
     counts, Xstar = hCRV.setup_hCRV(X)

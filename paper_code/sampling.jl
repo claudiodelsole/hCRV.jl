@@ -19,7 +19,7 @@ counts_group = fill(50, d)
 
 # sample observations
 X = model_poisson(counts_group, means, seed = 110590)
-# X = model_hdp(counts_group, 5.0, 3.0, seed = 110590)
+# X = model_hdp(counts_group, 3.0, 5.0, seed = 110590)
 
 # extract info from data
 counts, Xstar = hCRV.setup_hcrv(X)

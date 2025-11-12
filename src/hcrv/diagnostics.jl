@@ -4,6 +4,13 @@ export DiagnosticsMCMC, DiagnosticsExact
 """
     mutable struct DiagnosticsMCMC
 
+Store diagnostics for posterior sampling in [`posterior_gamma_mcmc`](@ref).
+
+# Fields
+- `accept_latent`: acceptance rate for latent variable updates
+- `accept_jumps`: acceptance rates for each basejump
+- `time_burnin`: execution time for the burnin phase
+- `etime`: total execution time
 """
 mutable struct DiagnosticsMCMC
 
@@ -23,6 +30,13 @@ end # struct
 """
    mutable struct DiagnosticsExact 
 
+Store diagnostics for posterior sampling in [`posterior_gamma_exact`](@ref).
+
+# Fields
+- `accept_latent`: acceptance rate for latent variable rejection sampler
+- `time_init`: execution time for initialization
+- `time_latent`: execution time for latent variable rejection sampler
+- `etime`: total execution time
 """
 mutable struct DiagnosticsExact
 
@@ -38,18 +52,3 @@ mutable struct DiagnosticsExact
     DiagnosticsExact() = new(0.0, 0.0, 0.0, mytime())
     
 end # struct
-
-# """
-#     mutable struct DiagnosticsMixtures 
-
-# """
-# mutable struct DiagnosticsMixtures
-
-#     # execution times
-#     time_burnin::Float64
-#     etime::Float64
-    
-#     # constructor
-#     DiagnosticsMixtures() = new(0.0, mytime())
-
-# end # struct

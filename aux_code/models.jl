@@ -1,12 +1,24 @@
 # imports
 import Random: seed!
-import Distributions: Normal, Poisson, Categorical, Beta, Dirichlet
+import Distributions: Poisson, Categorical, Beta, Dirichlet
 
 """
     model_poisson(counts_group, means; seed = 0)
 
+Generate independent observations from Poisson distributions.
+
+# Arguments:
+- `counts_group`: number of observations for each population
+- `means`: Poisson parameters for each population
+- `seed`: seed for reproducibility (if seed = 0, no seed is set)
+
+# Returns:
+- `X`: observations for each population
 """
-function model_poisson(counts_group::Vector{Int64}, means::Vector{Float64}; seed::Int64 = 0)
+function model_poisson(counts_group::Vector{Int64}, means::Vector{Float64}; seed::Int64 = 0)::Vector{Vector{Int64}}
+
+    # check input
+    @assert length(counts_group) == length(means)
     
     # set seed
     if seed > 0 seed!(seed) end
@@ -25,11 +37,25 @@ function model_poisson(counts_group::Vector{Int64}, means::Vector{Float64}; seed
 end # model_poisson
 
 """
-    model_hdp(counts_group, alpha, alpha0; hyperprior = false, L = 100, seed = 0)
+    model_hdp(counts_group, alpha0, alpha; hyperprior = false, L = 100, seed = 0)
 
+Generate observations from hierarchical Dirichlet process.
+
+# Arguments:
+- `counts_group`: number of observations for each population
+- `alpha0`: concentration parameter for root measure
+- `alpha`: concentration parameter
+
+# Keyword Arguments:
+- `hyperprior = false`: gamma hyperprior on concentration parameter (to match gamma-gamma hierarchical CRV model)
+- `L = 100`: number of jumps from the root measure
+- `seed = 0`: seed for reproducibility (if seed = 0, no seed is set)
+
+# Returns:
+- `X`: observations for each population
 """
 function model_hdp(counts_group::Vector{Int64}, alpha::Float64, alpha0::Float64; 
-        hyperprior::Bool = false, L::Int64 = 100, seed::Int64 = 0)
+        hyperprior::Bool = false, L::Int64 = 100, seed::Int64 = 0)::Vector{Vector{Int64}}
     
     # set seed
     if seed > 0 seed!(seed) end
@@ -59,29 +85,6 @@ function model_hdp(counts_group::Vector{Int64}, alpha::Float64, alpha0::Float64;
     return X
 
 end # model_hdp
-
-"""
-    model_mixture(counts_group, centers, stdevs, probs; seed = 0)
-
-"""
-function model_mixture(counts_group::Vector{Int64}, centers::Vector{Float64}, stdevs::Vector{Float64}, probs::Matrix{Float64}; seed::Int64 = 0)
-
-    # set seed
-    if seed > 0 seed!(seed) end
-    
-    # initialize output
-    X = Vector{Vector{Float64}}(undef, 0)
-    
-    # sample observations
-    for (i, numobs) in enumerate(counts_group)
-        clusters = rand(Categorical(probs[i,:]), numobs)
-        X_group = rand(Normal(centers[clusters], stdevs[clusters]))
-        push!(X, X_group)
-    end
-    
-    return X
-
-end # model_mixture
 
 """
     stick_breaking(alpha, L)

@@ -4,7 +4,7 @@ import LinearAlgebra: dot
 """
     random_means(jumps, jumpsc, Xstar, base_samples)
 
-Computation of random means from posterior samples
+Computation of random means from posterior samples.
 
 # Arguments:
 - `jumps`: posterior samples from (normalized) jumps at fixed locations
@@ -37,7 +37,7 @@ end # random_means
 """
     random_probsnew(probs, probsc, counts)
 
-Computation of probabilities of unseen values from posterior samples
+Computation of probabilities of unseen values from posterior samples.
 
 # Arguments:
 - `probs`: posterior samples from normalized jumps at fixed locations

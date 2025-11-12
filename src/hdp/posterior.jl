@@ -4,11 +4,11 @@ export posterior_hdp
 """
     posterior_hdp(X, alpha0, alpha, num_samples; kwargs...)
 
-Posterior sampling from the hierarchical Dirichlet process, using marginal algorithms (CRF Gibbs or Collapsed Tables).
+Posterior sampling from the hierarchical Dirichlet process, using marginal algorithms (CRF-based or collapsed).
 
 # Arguments:
-- `X`: vectors of observations for each population
-- `alpha0`: concentration parameter for root
+- `X`: observations for each population
+- `alpha0`: concentration parameter for root measure
 - `alpha`: concentration parameter
 - `num_samples`: number of output posterior samples
 
@@ -16,15 +16,15 @@ Posterior sampling from the hierarchical Dirichlet process, using marginal algor
 - `burnin = 0`: burnin steps
 - `thin = 1`: thinning lag
 - `L = 0`: number of jumps from the continuous component (if L = 0, total mass)
-- `prior = false`: imposes Gamma prior on the concentration parameter (shape = alpha0, scale = alpha)
-- `collapsed = false`: use marginal restaurant franchise sampler (false) or collapsed Gibbs sampler for tables (true)
+- `prior = false`: impose Gamma prior on the concentration parameter (shape = alpha0, scale = alpha)
+- `collapsed = false`: use CRF-base Gibbs sampler (false) or collapsed Gibbs sampler (true)
 
 # Returns:
 - `jumps`: posterior samples from jumps at fixed locations
 - `jumpsc`: posterior samples from jumps at random locations
 - `counts`: number of observations for each population and distinct value
 - `Xstar`: distinct values
-- `dgn`: DiagnosticsHDP object
+- `dgn`: [`DiagnosticsHDP`](@ref) object
 """
 function posterior_hdp(X::Vector{Vector{T}}, alpha0::Float64, alpha::Float64, num_samples::Int64; 
         burnin::Int64 = 0, thin::Int64 = 1, L::Int64 = 0, prior::Bool = false, collapsed::Bool = false) where T

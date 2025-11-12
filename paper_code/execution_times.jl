@@ -48,7 +48,7 @@ for (id, d) in enumerate(dvalues)
     for s in range(1, num_experiments)
 
         # sample observations
-        X = model_hdp(counts_group, 5.0, 3.0, seed = 110590 + s)
+        X = model_hdp(counts_group, 3.0, 5.0, seed = 110590 + s)
         
         # Metropolis-Hastings with lognormal proposal
         probs, _, _, Xstar, dgn = posterior_gamma_mcmc(X, alpha0, b0 / alpha, b, num_samples, burnin = burnin, normalize = true, logscale = true)
@@ -111,7 +111,7 @@ for (id, n) in enumerate(nvalues)
     for s in range(1, num_experiments)
 
         # sample observations
-        X = model_hdp(counts_group, 5.0, 3.0, seed = 110590 + s)
+        X = model_hdp(counts_group, 3.0, 5.0, seed = 110590 + s)
         
         # Metropolis-Hastings with lognormal proposal
         probs, _, _, Xstar, dgn = posterior_gamma_mcmc(X, alpha0, b0 / alpha, b, num_samples, burnin = burnin, normalize = true, logscale = true)
@@ -173,7 +173,7 @@ myseed = 180396
 while sum(counter .< num_experiments) > 0
 
     # sample observations
-    X = model_hdp(counts_group, rand(Gamma(5.0)), rand(Gamma(3.0)), seed = (myseed += 1))
+    X = model_hdp(counts_group, rand(Gamma(3.0)), rand(Gamma(5.0)), seed = (myseed += 1))
 
     # number of clusters
     _, Xstar = hCRV.setup_hcrv(X)
