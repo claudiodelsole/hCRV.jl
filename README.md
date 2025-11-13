@@ -49,6 +49,6 @@ probs_exact, probsc_exact, counts, Xstar, dgn_exact = posterior_gamma_exact(X, a
 probs_hdppr, probsc_hdppr, counts, Xstar, dgn_hdppr = posterior_hdp(X, alpha0, alpha, num_samples, burnin = 1000, prior = true, collapsed = true)
 ```
 
-## Integration in R
+## R interface
 
-The script `hcrv.R` contains instructions to integrate the Julia package within the R environment. The installation and setup of the required Julia dependencies is managed by the script `/aux_code/integrate.R`, which also provides the interface to run Julia functions in R. Make sure to have Julia installed before executing the instructions in the `hcrv.R` script.
+The script `hcrv.R` contains instructions to integrate the Julia package within the R environment. The installation and setup of the required Julia dependencies is managed by the script `/aux_code/interface.R`, which also provides the interface to run Julia functions in R. Make sure to have Julia installed before executing the instructions in the `hcrv.R` script.
