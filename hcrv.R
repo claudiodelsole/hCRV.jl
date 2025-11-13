@@ -18,7 +18,7 @@ setwd("C:/Users/claud/OneDrive - Università Commerciale Luigi Bocconi/Code/hCRV
 
 # precompile hCRV package and load R auxiliary functions
 # takes up to 30/60 seconds
-source("aux_code/integrate.R")
+source("aux_code/interface.R")
 
 # data set in R (list of vectors)
 X = list(c(4, 2, 4, 4, 5, 5, 7, 3, 2, 5), 
