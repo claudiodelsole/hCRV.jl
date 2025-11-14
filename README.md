@@ -20,34 +20,9 @@ Their outputs also include structs with diagnostics of the sampling algorithms, 
 
 The additional module `HDP` export the function `posterior_hdp`, implementing the posterior sampling algorithms for the hierarchical Dirichlet process, and the struct with diagnostics `DiagnosticsHDP`. The module can be loaded by running `include("src/HDP.jl")` and then `using .HDP`.
 
-Finally, the file `/aux_code/models.jl` contains auxiliary functions to generate synthetic observations; for example, `model_poisson` generates indpendent observations from Poisson distributions.
+Finally, the file `/aux_code/models.jl` contains auxiliary functions to generate synthetic observations; for example, `model_poisson` generates indpendent observations from Poisson distributions. These functions can be made available by running `include("aux_code/models.jl")`.
 
-A complete minimum working example is the following:
-
-```
-# dataset parameters
-counts_group = fill(50, 4)
-means = [2.0, 3.0, 4.0, 5.0]
-
-# generate synthetic observations
-X = model_poisson(counts_group, means)
-
-# model parameters
-alpha, b = 1.0, 1.0
-alpha0, b0 = 1.0, 1.0
-
-# number of samples
-num_samples = 10000
-
-# MCMC sampler
-probs_mcmc, probsc_mcmc, counts, Xstar, dgn_mcmc = posterior_gamma_mcmc(X, alpha0, b0 / alpha, b, num_samples, burnin = 1000, normalize = true)
-
-# exact sampler
-probs_exact, probsc_exact, counts, Xstar, dgn_exact = posterior_gamma_exact(X, alpha0, b0 / alpha, b, num_samples, normalize = true)
-
-# collapsed Gibbs sampler for HDP with matching prior
-probs_hdppr, probsc_hdppr, counts, Xstar, dgn_hdppr = posterior_hdp(X, alpha0, alpha, num_samples, burnin = 1000, prior = true, collapsed = true)
-```
+A complete minimum working example is presented in the script `hcrv.jl`.
 
 ## R interface
 
