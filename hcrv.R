@@ -1,5 +1,5 @@
 # install JuliaCall package
-# install.packages("JuliaCall")
+install.packages("JuliaCall")
 
 # load package: integrates Julia with R
 library(JuliaCall)
@@ -9,12 +9,10 @@ library(JuliaCall)
 julia_setup()
 
 # if Julia is not found automatically, specify the location of the julia.exe file
-# julia_setup(JULIA_HOME = "C:/.../bin")
-julia_setup(JULIA_HOME = "C:/Users/claud/.julia/juliaup/julia-1.11.1+0.x64.w64.mingw32/bin")
+julia_setup(JULIA_HOME = "C:/.../bin")
 
 # set working directory to the location of Project.toml file
-# setwd("C:/.../hCRV")
-setwd("C:/Users/claud/OneDrive - Università Commerciale Luigi Bocconi/Code/hCRV")
+setwd("C:/.../hCRV")
 
 # precompile hCRV package and load R auxiliary functions
 # takes up to 30/60 seconds
@@ -31,15 +29,14 @@ alpha0 <- 1.0; b0 <- 1.0
 
 # number of samples
 num_samples <- 10000
-burnin <- 1000
 
 ### posterior sampling
 
 # MCMC sampler
-out_mcmc <- posterior_gamma_mcmc(X, alpha0, b0 / alpha, b, num_samples, burnin = burnin)
+out_mcmc <- posterior_gamma_mcmc(X, alpha0, b0 / alpha, b, num_samples, burnin = 1000, normalize = true)
 
 # exact sampler
-out_exact <- posterior_gamma_exact(X, alpha0, b0 / alpha, b, num_samples)
+out_exact <- posterior_gamma_exact(X, alpha0, b0 / alpha, b, num_samples, normalize = true)
 
 # collapsed Gibbs sampler for HDP with matching prior
-out_hdp <- posterior_hdp(X, alpha0, alpha, num_samples, burnin = burnin, prior = T, collapsed = T)
+out_hdp <- posterior_hdp(X, alpha0, alpha, num_samples, burnin = 1000, prior = T, collapsed = T)
