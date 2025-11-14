@@ -19,7 +19,7 @@ include("../aux_code/functionals.jl")
 
 # set colors
 # mycolors = ["#abce94", "#d37e61", "#4d7baf"]
-mycolors = [1, 2, 3]
+mycolors = [1, 3, 2]
 
 ##### Penguins dataset
 
@@ -30,7 +30,7 @@ penguins = CSV.File("data/penguins.csv")
 penguins = filter(row -> sum(ismissing.(row)) == 0, penguins)
 
 # filter female penguins
-penguins = filter(row -> row.sex == "FEMALE", penguins)
+penguins = filter(row -> row.sex == "female", penguins)
 
 # create data frame
 penguins = DataFrame(penguins)
