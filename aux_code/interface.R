@@ -10,7 +10,8 @@ julia_command("using hCRV")
 julia_call("include", "src/HDP.jl")
 julia_command("using .HDP")
 
-# create julia data set
+### R interface
+
 julia_dataset <- function(X) {
   
   # initialize output
@@ -25,7 +26,6 @@ julia_dataset <- function(X) {
   julia_eval("X")
 }
 
-# posterior_gamma_mcmc
 posterior_gamma_mcmc <- function(X, alpha0, rate0, b, num_samples, 
                                  burnin = 0, thin = 1, L = 0, normalize = F, logscale = T) {
   
@@ -41,7 +41,6 @@ posterior_gamma_mcmc <- function(X, alpha0, rate0, b, num_samples,
        counts = out[[3]], Xstar = out[[4]], dgn = diagnostics_mcmc(out[[5]]))
 }
 
-# diagnostics_mcmc
 diagnostics_mcmc <- function(dgn) {
   
   # extract from Julia object
@@ -52,7 +51,6 @@ diagnostics_mcmc <- function(dgn) {
        etime = julia_eval("dgn.etime"))
 }
 
-# posterior_gamma_exact
 posterior_gamma_exact <- function(X, alpha0, rate0, b, num_samples, 
                                  L = 0, normalize = F) {
   
@@ -67,7 +65,6 @@ posterior_gamma_exact <- function(X, alpha0, rate0, b, num_samples,
        counts = out[[3]], Xstar = out[[4]], dgn = diagnostics_exact(out[[5]]))
 }
 
-# diagnostics_exact
 diagnostics_exact <- function(dgn) {
   
   # extract from Julia object
@@ -78,7 +75,6 @@ diagnostics_exact <- function(dgn) {
        etime = julia_eval("dgn.etime"))
 }
 
-# posterior_hdp
 posterior_hdp <- function(X, alpha0, alpha, num_samples, 
                           burnin = 0, thin = 1, L = 0, prior = F, collapsed = F) {
   
@@ -94,7 +90,6 @@ posterior_hdp <- function(X, alpha0, alpha, num_samples,
        counts = out[[3]], Xstar = out[[4]], dgn = diagnostics_hdp(out[[5]]))
 }
 
-# diagnostics_hdp
 diagnostics_hdp <- function(dgn) {
 
   # extract from Julia object

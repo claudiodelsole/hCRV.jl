@@ -1,4 +1,4 @@
-# export structs
+# export struct
 export DiagnosticsHDP
 
 """

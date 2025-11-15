@@ -99,9 +99,9 @@ for (idx, rho) in enumerate(rhos)
 end
 
 # save times
-npzwrite("saves/borrowing.npz", Dict("rhos" => rhos, "sigma2s" => sigma2s,
-                                     "empirical_means" => empirical_means,
-                                     "posterior_means" => posterior_means))
+# npzwrite("saves/borrowing.npz", Dict("rhos" => rhos, "sigma2s" => sigma2s,
+#                                      "empirical_means" => empirical_means,
+#                                      "posterior_means" => posterior_means))
 
 # create subplots
 subplots = plot(layout = (2, 3), legend = false, fontfamily = "Computer Modern")

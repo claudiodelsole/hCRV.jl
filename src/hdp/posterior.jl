@@ -1,4 +1,4 @@
-# export functions
+# export function
 export posterior_hdp
 
 """
